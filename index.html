@@ -64,11 +64,13 @@
 					<h2>Agenda</h2>
 					<ol>
 						<li>Getting started</li>
-						<li>TBD</li>
+						<li>Demo</li>
+						<li>Demo 2</li>
 					</ol>
 
 					<aside class="notes">
 						Feel free to break me if you need
+						Goal: encourage to use Play Framework as fast development framework
     			</aside>
 				</section>
 
@@ -89,7 +91,7 @@
 							<ol>
 								<li>minimal or full</li>
 								<li>whereis</li>
-								<li>activator ui -> new Play Java Seed, activator new -> play-scala</li>
+								<li>activator ui -> new Play Java Seed, activator new -> play-scala + run with UI and CLI</li>
 								<li>Launching, help, run(compile errors), compile, test, console - views.html.index("uuu"), debugging, ~</li>
 							</ol>
 	    			</aside>
@@ -116,10 +118,85 @@
 				</section>
 
 				<section>
-					<h2>TBD</h2>
-				</section>
-<!-- !!!!!!!!!!!!!!!!!!!!!!!!! -->
+					<h2>Demo</h2>
 
+					<aside class="notes">
+						<ul>
+							<li>change text Application.index, fast development</li>
+							<li>do a blunder, compile error, don't worry, visible only in dev mode</li>
+							<li>templates in scala, possible to use e.g. groovy, composition</li>
+							<li>@play20.welcome(message) -> @message</li>
+							<li>ApplicationSpec</li>
+							<li>browser test, IntegrationSpec</li>
+							<li>run and fix test, testQuick</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h2>Demo 2</h2>
+
+					<aside class="notes">
+						<ul>
+							<li>create models.Person</li>
+							<li>object Person -> implicit val personFormat -> Json.format[Person]</li>
+							<li>POST    /person                     controllers.Application.addPerson</li>
+							<li>import sorm._, only for presentation, Slick</li>
+							<li>object DB extends Instance(entities = Seq(Entity[Person]()), url = "jdbc:h2:mem:test") {</li>
+						  <li>curl -H "Content-Type: application/json" -X POST -d '{}' http://localhost:9000/person</li>
+							<li>  val personForm: Form[Person] = Form {
+							    mapping(
+							      "name" -> text
+							    )(Person.apply)(Person.unapply)
+							  }
+							</li>
+							<li>
+								val person = personForm.bindFromRequest.get
+								DB.save(person)
+								Redirect(routes.Application.index())
+							</li>
+							<li>
+								<form action="@routes.Application.addPerson()" method="post">
+										<input name="name" type="text"/>
+										<button>Add person</button>
+								</form>
+							</li>
+							<li>
+								GET     /persons                    controllers.Application.getPersons
+								refresh i show
+							</li>
+							<li>
+								val persons = DB.query[Person].fetch()
+								Ok(Json.toJson(persons))
+							</li>
+							<li>
+								plugins.sbt
+							</li>
+							<li>
+								<script src='@routes.Assets.versioned("js/index.js")' type="application/javascript"></script>
+							</li>
+							<li>
+								webjars
+							</li>
+							<li>
+							</li>
+
+						</ul>
+					</aside>
+				</section>
+
+				<!-- <section>
+					<h2>Main concepts</h2>
+				</section> -->
+
+				<section>
+					<h2>Modules</h2>
+					<ul>
+						<li><a href="https://playframework.com/documentation/2.4.x/ModuleDirectory#Silhouette-(Scala)">Silhouette</a></li>
+						<li><a href="https://playframework.com/documentation/2.4.x/ModuleDirectory#PDF-module-(Java)">PDF</a></li>
+						<li><a href="https://playframework.com/documentation/2.4.x/ModuleDirectory">and many others</a></li>
+					</ul>
+				</section>
 
 <!-- Ending -->
 				<section data-background-image="images/end.jpg">
@@ -131,7 +208,12 @@
 					<ul>
 						<li>presentation is <a href="http://runit.space/introduction-to-play/">online</a></li>
 						<li>next <a href="http://www.ybrikman.com/writing/2014/03/10/the-ultimate-guide-to-getting-started/">steps</a></li>
+						<li>activator <a href="https://www.lightbend.com/activator/templates">templates</a></li>
 					</ul>
+
+					<aside class="notes">
+						search template by Javeo string
+					</aside>
 				</section>
 
 			</div>
