@@ -148,8 +148,8 @@
 							<li>create models.Person</li>
 							<li>object Person -> implicit val personFormat -> Json.format[Person]</li>
 							<li>POST    /person                     controllers.Application.addPerson</li>
-							<li>import sorm._, only for presentation, Slick</li>
-							<li>object DB extends Instance(entities = Seq(Entity[Person]()), url = "jdbc:h2:mem:test") {</li>
+							<li>dependency from github, import sorm._, only for presentation, Slick</li>
+							<li>from site, object DB extends Instance(entities = Seq(Entity[Person]()), url = "jdbc:h2:mem:test") {</li>
 						  <li>curl -H "Content-Type: application/json" -X POST -d '{}' http://localhost:9000/person</li>
 							<li>  val personForm: Form[Person] = Form {
 							    mapping(
@@ -163,10 +163,9 @@
 								Redirect(routes.Application.index())
 							</li>
 							<li>
-								<form action="@routes.Application.addPerson()" method="post">
-										<input name="name" type="text"/>
-										<button>Add person</button>
-								</form>
+								form action="@routes.Application.addPerson()" method="post">
+										input name="name" type="text"/
+										button>Add person
 							</li>
 							<li>
 								GET     /persons                    controllers.Application.getPersons
@@ -180,12 +179,10 @@
 								plugins.sbt
 							</li>
 							<li>
-								<script src='@routes.Assets.versioned("js/index.js")' type="application/javascript"></script>
+								script src='@routes.Assets.versioned("js/index.js")' type="application/javascript"
 							</li>
 							<li>
 								webjars
-							</li>
-							<li>
 							</li>
 
 						</ul>
