@@ -145,35 +145,35 @@
 
 					<aside class="notes">
 						<ul>
-							<li>create models.Person</li>
-							<li>object Person -> implicit val personFormat -> Json.format[Person]</li>
-							<li>POST    /person                     controllers.Application.addPerson</li>
+							<li>create models.Company</li>
+							<li>object Company -> implicit val companyFormat -> Json.format[Company]</li>
+							<li>POST    /company                     controllers.Application.addCompany</li>
 							<li>dependency from github, import sorm._, only for presentation, Slick</li>
-							<li>from site, object DB extends Instance(entities = Seq(Entity[Person]()), url = "jdbc:h2:mem:test") {</li>
-						  <li>curl -H "Content-Type: application/json" -X POST -d '{}' http://localhost:9000/person</li>
-							<li>  val personForm: Form[Person] = Form {
+							<li>from site, object DB extends Instance(entities = Seq(Entity[Company]()), url = "jdbc:h2:mem:test") {</li>
+						  <li>curl -H "Content-Type: application/json" -X POST -d '{}' http://localhost:9000/company</li>
+							<li>  val companyForm: Form[Company] = Form {
 							    mapping(
 							      "name" -> text
-							    )(Person.apply)(Person.unapply)
+							    )(Company.apply)(Company.unapply)
 							  }
 							</li>
 							<li>
-								val person = personForm.bindFromRequest.get
-								DB.save(person)
+								val company = companyForm.bindFromRequest.get
+								DB.save(Company)
 								Redirect(routes.Application.index())
 							</li>
 							<li>
-								form action="@routes.Application.addPerson()" method="post">
+								form action="@routes.Application.addCompany()" method="post">
 										input name="name" type="text"/
-										button>Add person
+										button>Add Company
 							</li>
 							<li>
-								GET     /persons                    controllers.Application.getPersons
+								GET     /companies                    controllers.Application.getCompanies
 								refresh i show
 							</li>
 							<li>
-								val persons = DB.query[Person].fetch()
-								Ok(Json.toJson(persons))
+								val companies = DB.query[Company].fetch()
+								Ok(Json.toJson(companies))
 							</li>
 							<li>
 								plugins.sbt
