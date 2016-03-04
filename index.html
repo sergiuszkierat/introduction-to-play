@@ -70,7 +70,6 @@
 					<ol>
 						<li>Getting started</li>
 						<li>Demo</li>
-						<li>Demo 2</li>
 					</ol>
 
 					<aside class="notes">
@@ -125,10 +124,8 @@
 
 				<section>
 					<h2>Demo</h2>
-
 					<aside class="notes">
 						<ul>
-							<li>debugging</li>
 							<li>change text Application.index, fast development</li>
 							<li>do a blunder, compile error, don't worry, visible only in dev mode</li>
 							<li>templates in scala, possible to use e.g. groovy, composition</li>
@@ -136,15 +133,8 @@
 							<li>ApplicationSpec</li>
 							<li>browser test, IntegrationSpec</li>
 							<li>run and fix test, testQuick</li>
-						</ul>
-					</aside>
-				</section>
-
-				<section>
-					<h2>Demo 2</h2>
-
-					<aside class="notes">
-						<ul>
+							<li>----------</li>
+							<li>debugging</li>
 							<li>create models.Company</li>
 							<li>object Company -> implicit val companyFormat -> Json.format[Company]</li>
 							<li>POST    /company                     controllers.Application.addCompany</li>
@@ -179,7 +169,13 @@
 								plugins.sbt
 							</li>
 							<li>
-								script src='@routes.Assets.versioned("js/index.js")' type="application/javascript"
+								$ ->
+								  $.get "/companies", (companies) ->
+								    $.each companies, (index, company) ->
+								      $("#companies").append $("<li>").text company.name
+							</li>
+							<li>
+								script src='@routes.Assets.versioned("js/index.js")'
 							</li>
 							<li>
 								webjars
@@ -190,17 +186,13 @@
 				</section>
 
 				<!-- <section>
-					<h2>Main concepts</h2>
-				</section> -->
-
-				<section>
 					<h2>Modules</h2>
 					<ul>
 						<li><a href="https://playframework.com/documentation/2.4.x/ModuleDirectory#Silhouette-(Scala)">Silhouette</a></li>
 						<li><a href="https://playframework.com/documentation/2.4.x/ModuleDirectory#PDF-module-(Java)">PDF</a></li>
 						<li><a href="https://playframework.com/documentation/2.4.x/ModuleDirectory">and many others</a></li>
 					</ul>
-				</section>
+				</section> -->
 
 <!-- Ending -->
 				<section data-background-image="images/end.jpg">
